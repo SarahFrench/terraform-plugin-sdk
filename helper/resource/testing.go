@@ -197,7 +197,7 @@ func filterSweepers(f string, source map[string]*Sweeper) map[string]*Sweeper {
 	sweepers := make(map[string]*Sweeper)
 	for name := range source {
 		for _, s := range filterSlice {
-			reString := fmt.Sprintf(`^%s$`, s)
+			reString := fmt.Sprintf(`^%s_[a-z1-9]{8}$`, s) // For whatever reason, the sweepers have an underscore and a 8 char hash at the end
 			re := regexp.MustCompile(reString)
 			// Sweeper must match the filter, not just contain it
 			if re.MatchString(strings.ToLower(name)) {
